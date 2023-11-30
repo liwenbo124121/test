@@ -19,3 +19,7 @@ public class ServerApplication {
         SpringApplication.run(ServerApplication.class, args);
     }
 }
+    public static void main(String[] args) {
+        SpringApplication.run(ServerApplication.class, args);
+    }
+}
