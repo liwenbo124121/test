@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.osc.scan.server.business.dao.ModuleDao">
+    <resultMap id="moduleResultMap" type="org.osc.scan.server.business.pojo.dto.ModuleDto">
+        <result column="module_id" property="moduleId"/>
+        <result column="module_name" property="moduleName"/>
+        <result column="company" property="company"/>
+        <result column="project" property="project"/>
+        <result column="creator" property="creator"/>
+        <result column="getcode_type" property="getcodeType"/>
+        <result column="code_path" property="codePath"/>
+        <result column="code_user" property="codeUser"/>
+        <result column="code_pwd" property="codePwd"/>
+        <result column="filter_path" property="filterPath"/>
+        <result column="scan_path" property="scanPath"/>
+        <result column="agent_name" property="agentName"/>
+        <result column="create_time" property="createTime"/>
+        <result column="edit_time" property="editTime"/>
+        <result column="module_tag" property="moduleTag"/>
+        <result column="visible" property="visible"/>
+        <result column="job_name" property="jobName"/>
+        <result column="compile_cmd" property="compileCmd"/>
+        <result column="ci_server" property="ciServer"/>
+    </resultMap>
+
+    <select id="find" resultMap="moduleResultMap" parameterType="java.lang.Integer">
+        select *
+        from module t
+        where t.module_id = #{moduleId}
+    </select>
+</mapper>

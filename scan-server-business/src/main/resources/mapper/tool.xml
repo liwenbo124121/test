@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.osc.scan.server.business.dao.ToolDao">
+    <resultMap id="ToolResultMap" type="org.osc.scan.server.business.pojo.dto.ToolDto">
+        <result column="tool_id" property="toolId"/>
+        <result column="tool_name" property="toolName"/>
+        <result column="need_cmd" property="needCmd"/>
+        <result column="tool_category" property="toolCategory"/>
+    </resultMap>
+
+    <!--根据langId查询模块中的工具-->
+    <select id="findToolsByLangId" parameterType="java.lang.Long" resultMap="ToolResultMap">
+        select t.tool_id, t.tool_name
+        from tool as t,
+             lang_tool as lt
+        where lt.tool_id = t.tool_id
+          and lt.lang_id = #{langId}
+        order by lt.is_default desc
+    </select>
+</mapper>

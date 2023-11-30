@@ -1,0 +1,35 @@
+spring:
+  datasource:
+    dynamic:
+      primary: scan
+      datasource:
+        scan:
+          url: jdbc:mysql://192.168.80.50:20044/scan2.0?zeroDat344eTimeBehavior=convertToNull&serverTimezone=Asia/Shanghai
+          username: root
+          password: admin@2020
+  kafka:
+    bootstrap-servers: 192.168.80.83:6815
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+      batch-size: 0
+    consumer:
+      auto-offset-reset: latest
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+jenkins:
+  url: http://192.168.80.56:16747/
+  account:
+  password:
+  assignedNode: poc
+  command: python /home/bugbye/scanner/main.py "$json_param"
+  script: python /home/bugbye/scanner/aborted.py "$json_param"

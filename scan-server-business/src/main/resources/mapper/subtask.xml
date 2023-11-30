@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.osc.scan.server.business.dao.SubTaskDao">
+    <resultMap id="subTaskResultMap" type="org.osc.scan.server.business.pojo.dto.SubTaskDto">
+        <id column="sub_task_id" property="subTaskId"/>
+        <result column="task_id" property="taskId"/>
+        <result column="status" property="status"/>
+        <result column="err_desc" property="errDesc"/>
+        <result column="err_detail" property="errDetail"/>
+        <result column="file_count" property="fileCount"/>
+        <result column="code_count" property="codeCount"/>
+        <result column="tool_id" property="toolId"/>
+        <result column="bug_count" property="bugCount"/>
+        <result column="lang_bug_count" property="langBugCount"/>
+        <result column="bug_density" property="bugDensity"/>
+        <result column="lang_bug_density" property="langBugDensity"/>
+        <result column="result_level" property="resultLevel"/>
+        <result column="result_path" property="resultPath"/>
+        <result column="createtime" property="createtime"/>
+        <result column="starttime" property="starttime"/>
+        <result column="endtime" property="endtime"/>
+        <result column="node_name" property="nodeName"/>
+        <result column="cpd_checked" property="cpdChecked"/>
+        <result column="st_checked" property="stChecked"/>
+        <result column="mi_checked" property="miChecked"/>
+        <result column="build_number" property="buildNumber"/>
+        <result column="sub_module_id" property="subModuleId"/>
+        <result column="build_name" property="buildName"/>
+        <result column="lang_id" property="langId"/>
+        <result column="scan_type_id" property="scanTypeId"/>
+    </resultMap>
+
+    <!--主键查询-->
+    <select id="find" resultMap="subTaskResultMap" parameterType="java.lang.Integer">
+        select *
+        from subtask t
+        where t.sub_task_id = #{subTaskId}
+    </select>
+
+    <!--主键加锁查询-->
+    <select id="finForUpdate" resultMap="subTaskResultMap" parameterType="java.lang.Integer">
+        select *
+        from subtask t
+        where t.sub_task_id = #{subTaskId} for update
+    </select>
+
+    <!--更新subtask-->
+    <update id="updateSubTask" parameterType="org.osc.scan.server.business.pojo.dto.SubTaskDto">
+        update subtask t
+        <set>
+            <if test="null!=subTaskId">
+                t.sub_task_id = #{subTaskId},
+            </if>
+            <if test="null!=status">
+                t.status = #{status},
+            </if>
+            <if test="null!=errDesc">
+                t.err_desc = #{errDesc},
+            </if>
+            <if test="null!=errDetail">
+                t.err_detail = #{errDetail},
+            </if>
+            <if test="null!=fileCount">
+                t.file_count = #{fileCount},
+            </if>
+            <if test="null!=codeCount">
+                t.code_count = #{codeCount},
+            </if>
+            <if test="null!=starttime">
+                t.starttime = #{starttime},
+            </if>
+            <if test="null!=nodeName">
+                t.node_name = #{nodeName},
+            </if>
+        </set>
+        <where>
+            t.sub_task_id = #{subTaskId}
+        </where>
+    </update>
+
+    <update id="updateStatusBySubTaskId">
+        update subtask t
+        <set>
+            t.status = #{status}
+        </set>
+        <where>
+            t.sub_task_id = #{subTaskId}
+        </where>
+    </update>
+
+    <select id="selectByTaskId" resultMap="subTaskResultMap">
+        select *
+        from subtask
+        where task_id = #{taskId,jdbcType=INTEGER}
+    </select>
+
+    <update id="updateStatusErrDescByTaskId">
+        update subtask t
+        <set>
+            t.status = #{status,jdbcType=INTEGER},
+            t.err_desc = #{errDesc,jdbcType=VARCHAR}
+        </set>
+        <where>
+            t.task_id = #{taskId,jdbcType=INTEGER}
+        </where>
+    </update>
+</mapper>

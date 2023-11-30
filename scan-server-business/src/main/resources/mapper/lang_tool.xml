@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.osc.scan.server.business.dao.LangToolDao">
+
+    <!--根据 langId toolId 判断当前是否是默认工具-->
+    <select id="getLangToolDefault" resultType="java.lang.Integer">
+        select is_default
+        from lang_tool t1,
+             tool t2
+        where t1.tool_id = t2.tool_id
+          and t1.lang_id = #{langId}
+          and t1.tool_id = #{toolId}
+          and t2.tool_category = 1 limit 1
+    </select>
+
+    <!--根据 langId toolId 判断当前是否是默认工具-->
+    <select id="getLangNameById" resultType="java.lang.String">
+        SELECT lang_name from `language` where lang_id = #{langId};
+    </select>
+</mapper>

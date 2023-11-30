@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.osc.scan.server.business.dao.UserDao">
+    <resultMap id="UserResultMap" type="org.osc.scan.server.business.pojo.dto.UserDto">
+        <result column="user_id" property="userId"/>
+        <result column="account" property="account"/>
+        <result column="role" property="role"/>
+        <result column="follow" property="follow"/>
+        <result column="email_follow" property="emailFollow"/>
+        <result column="virtual_pwd" property="virtualPwd"/>
+        <result column="new_func" property="newFunc"/>
+    </resultMap>
+
+    <!--主键查询用户名-->
+    <select id="getNameById" parameterType="java.lang.Integer" resultType="java.lang.String">
+        select account
+        from user
+        where user_id = #{userId}
+    </select>
+</mapper>

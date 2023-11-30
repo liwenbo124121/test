@@ -1,0 +1,34 @@
+spring:
+  datasource:
+    dynamic:
+      primary: scan
+      datasource:
+        scan:
+          url: ${SCAN_SERVERNEW_SCAN_DB_URL}
+          username: ${SCAN_SERVERNEW_SCAN_DB_USERNAME}
+          password: ${SCAN_SERVERNEW_SCAN_DB_PASSWORD}
+  kafka:
+    bootstrap-servers: ${SCAN_SERVERNEW_KAFKA_SERVER_ADDR}
+    producer:
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+      acks: all
+      retries: 3
+      batch-size: 0
+    consumer:
+      auto-offset-reset: latest
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+  cloud:
+    nacos:
+      discovery:
+        enabled: false
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+
+jenkins:
+  url: ${SCAN_SERVERNEW_JENKINS_URL}
+  account:
+  password:
+  assignedNode: poc
+  command: python /home/bugbye/scanner/main.py "$json_param"
+  script: python /home/bugbye/scanner/aborted.py "$json_param"

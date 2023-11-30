@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <parent>
+        <artifactId>small-white-bear-parent</artifactId>
+        <groupId>org.osc</groupId>
+        <version>1.0.2</version>
+    </parent>
+
+    <description>
+        scan server服务:
+        1.vo用于controller、acl（请求其它接口、请求其它服务）
+        2.bo用于service与其它层进行交互
+        3.dto用于dao，如果基于mybatis，只要做到于mapping文件中的字段一致即可
+    </description>
+
+    <groupId>org.osg</groupId>
+    <artifactId>scan-server</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>scan-server-client</module>
+        <module>scan-server-business</module>
+    </modules>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.osc</groupId>
+            <artifactId>scan-soa-base-module</artifactId>
+        </dependency>
+    </dependencies>
+
+    <repositories>
+        <repository>
+            <id>gitee-scan</id>
+            <name>gitee-scan</name>
+            <url>http://nexus.gitee.work/repository/gitee-scan/</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+                <updatePolicy>always</updatePolicy>
+            </snapshots>
+        </repository>
+    </repositories>
+
+    <distributionManagement>
+        <repository>
+            <id>gitee-scan</id>
+            <url>http://nexus.gitee.work/repository/gitee-scan/</url>
+        </repository>
+    </distributionManagement>
+</project>

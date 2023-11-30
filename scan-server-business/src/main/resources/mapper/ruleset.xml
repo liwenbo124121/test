@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.osc.scan.server.business.dao.RuleSetDao">
+    <resultMap id="RuleSetResultMap" type="org.osc.scan.server.business.pojo.dto.RuleSetDto">
+        <result column="rs_id" property="rsId"/>
+        <result column="rs_name" property="rsName"/>
+        <result column="rs_info" property="rsInfo"/>
+        <result column="rs_owner" property="rsOwner"/>
+        <result column="rs_tool" property="rsTool"/>
+        <result column="lang_id" property="langId"/>
+        <result column="rs_create_time" property="rsCreateTime"/>
+        <result column="project" property="project"/>
+        <result column="company" property="company"/>
+    </resultMap>
+
+    <!--根据模块查询规则集-->
+    <select id="getRuleSetsByModuleId" resultMap="RuleSetResultMap" parameterType="java.lang.Integer">
+        select rs_id, rs_name
+        from mod_ruleset
+        left join ruleset on ruleset.rs_id = mod_ruleset.ruleset_id
+        where mod_id = #{moduleId}
+    </select>
+</mapper>
