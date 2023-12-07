@@ -24,3 +24,45 @@ public interface PortalFeign {
     TestResponse test(@RequestBody TestRequest testRequest);
 
 }
+@FeignClient(value = "server", contextId = "serverFeign")
+public interface PortalFeign {
+
+    /**
+     * hello world
+     *
+     * @param testRequest
+     *            入参
+     * @return 出参
+     */
+    @PostMapping(value = "test")
+    TestResponse test(@RequestBody TestRequest testRequest);
+
+}
+@FeignClient(value = "server", contextId = "serverFeign")
+public interface PortalFeign {
+
+    /**
+     * hello world
+     *
+     * @param testRequest
+     *            入参
+     * @return 出参
+     */
+    @PostMapping(value = "test")
+    TestResponse test(@RequestBody TestRequest testRequest);
+
+}
+@FeignClient(value = "server", contextId = "serverFeign")
+public interface PortalFeign {
+
+    /**
+     * hello world
+     *
+     * @param testRequest
+     *            入参
+     * @return 出参
+     */
+    @PostMapping(value = "test")
+    TestResponse test(@RequestBody TestRequest testRequest);
+
+}
