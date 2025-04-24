@@ -14,8 +14,8 @@
 
     <properties>
         <freemarker.version>2.3.31</freemarker.version>
-        <mybatis-spring-boot-starter.version>2.1.4</mybatis-spring-boot-starter.version>
-        <dynamic-datasource-spring-boot-starter.version>3.3.1</dynamic-datasource-spring-boot-starter.version>
+        <mybatis-spring-boot-starter.version>2.2.0</mybatis-spring-boot-starter.version>
+        <dynamic-datasource-spring-boot-starter.version>4.1.0</dynamic-datasource-spring-boot-starter.version>
         <jenkins-client.version>0.3.8</jenkins-client.version>
     </properties>
 
